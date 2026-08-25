@@ -1,8 +1,8 @@
 import argparse
 import sys
 from eval_bench.dataset import load_dataset
-from eval_bench.runner import run_suite, summarize, save_run
-from eval_bench.compare import load_run, diff_runs, bootstrap_ci
+from eval_bench.runner import run_suite, summarize
+from eval_bench.compare import load_run, diff_runs, bootstrap_ci, save_run
 
 
 def main():
@@ -10,6 +10,7 @@ def main():
     parser.add_argument("--threshold", type=float, default=0.02, help="Max allowed score drop")
     parser.add_argument("--baseline", type=str, required=True)
     parser.add_argument("--suite", type=str, default="smoke", choices=["smoke", "standard", "full"])
+    parser.add_argument("--current", type=str, default=None, help="Path to pre-computed current run (skips live model calls)")
     args = parser.parse_args()
 
     dataset_path = {
@@ -18,9 +19,12 @@ def main():
         "full": "data/full_set.jsonl",
     }[args.suite]
 
-    examples = load_dataset(dataset_path)
-    current_results = run_suite(examples)
-    save_run(current_results, "runs/current.json")
+    if args.current:
+        current_results = load_run(args.current)
+    else:
+        examples = load_dataset(dataset_path)
+        current_results = run_suite(examples)
+        save_run(current_results, "runs/current.json")
 
     baseline_results = load_run(args.baseline)
     current_mean, _, _ = bootstrap_ci([r.score for r in current_results])

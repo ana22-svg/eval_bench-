@@ -1,0 +1,142 @@
+[
+  {
+    "example_id": "ex001",
+    "input": "What is the capital of France?",
+    "prediction": "Paris",
+    "gold": "Paris",
+    "score": 0.0
+  },
+  {
+    "example_id": "ex002",
+    "input": "2 + 2 = ?",
+    "prediction": "4",
+    "gold": "4",
+    "score": 1.0
+  },
+  {
+    "example_id": "ex003",
+    "input": "Name the largest planet in the solar system.",
+    "prediction": "Jupiter",
+    "gold": "Jupiter",
+    "score": 1.0
+  },
+  {
+    "example_id": "ex004",
+    "input": "Who wrote 'Pride and Prejudice'?",
+    "prediction": "Jane Austen",
+    "gold": "Jane Austen",
+    "score": 1.0
+  },
+  {
+    "example_id": "ex006",
+    "input": "What is the square root of 144?",
+    "prediction": "12",
+    "gold": "12",
+    "score": 1.0
+  },
+  {
+    "example_id": "ex007",
+    "input": "In what year did World War II end?",
+    "prediction": "1945",
+    "gold": "1945",
+    "score": 1.0
+  },
+  {
+    "example_id": "ex011",
+    "input": "What gas do plants absorb from the atmosphere for photosynthesis?",
+    "prediction": "carbon dioxide",
+    "gold": "Carbon dioxide",
+    "score": 1.0
+  },
+  {
+    "example_id": "ex013",
+    "input": "Who wrote 'Romeo and Juliet'?",
+    "prediction": "William Shakespeare",
+    "gold": "William Shakespeare",
+    "score": 1.0
+  },
+  {
+    "example_id": "ex015",
+    "input": "What is the longest river in the world?",
+    "prediction": "Nile",
+    "gold": "Nile",
+    "score": 1.0
+  },
+  {
+    "example_id": "ex017",
+    "input": "Who developed the theory of relativity?",
+    "prediction": "Albert Einstein",
+    "gold": "Albert Einstein",
+    "score": 1.0
+  },
+  {
+    "example_id": "ex022",
+    "input": "What is the capital of Australia?",
+    "prediction": "Canberra",
+    "gold": "Canberra",
+    "score": 1.0
+  },
+  {
+    "example_id": "ex023",
+    "input": "What is the powerhouse of the cell?",
+    "prediction": "Mitochondria",
+    "gold": "Mitochondria",
+    "score": 1.0
+  },
+  {
+    "example_id": "ex101",
+    "input": "What are the three branches of the US federal government?",
+    "prediction": "Legislative Executive Judicial",
+    "gold": "Executive, legislative, and judicial",
+    "score": 0.0
+  },
+  {
+    "example_id": "ex102",
+    "input": "Explain why the sky appears blue in one sentence.",
+    "prediction": "Atmosphere scatters blue light",
+    "gold": "Rayleigh scattering causes shorter blue wavelengths of sunlight to scatter more than other colors in Earth's atmosphere",
+    "score": 0.0
+  },
+  {
+    "example_id": "ex103",
+    "input": "Who is credited with inventing the telephone?",
+    "prediction": "Alexander Graham Bell",
+    "gold": "Alexander Graham Bell",
+    "score": 1.0
+  },
+  {
+    "example_id": "ex104",
+    "input": "What year did the Berlin Wall fall?",
+    "prediction": "1989",
+    "gold": "1989",
+    "score": 1.0
+  },
+  {
+    "example_id": "ex105",
+    "input": "Name two causes of World War I.",
+    "prediction": "militarism alliances",
+    "gold": "Assassination of Archduke Franz Ferdinand and a system of alliances among European powers",
+    "score": 0.0
+  },
+  {
+    "example_id": "ex106",
+    "input": "What is the difference between weather and climate?",
+    "prediction": "Timeframe",
+    "gold": "Weather is short-term atmospheric conditions, while climate is the long-term average of weather patterns over decades",
+    "score": 0.0
+  },
+  {
+    "example_id": "ex107",
+    "input": "What does GDP stand for and what does it measure?",
+    "prediction": "Gross domestic product economic output",
+    "gold": "Gross Domestic Product; it measures the total value of goods and services produced in a country",
+    "score": 0.0
+  },
+  {
+    "example_id": "ex108",
+    "input": "Who painted the Mona Lisa?",
+    "prediction": "Leonardo da Vinci",
+    "gold": "Leonardo da Vinci",
+    "score": 1.0
+  }
+]
