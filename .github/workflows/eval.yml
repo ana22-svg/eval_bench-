@@ -1,0 +1,20 @@
+name: Eval Suite
+on:
+  pull_request:
+    paths:
+      - "prompts/**"
+      - "eval_bench/**"
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Run eval suite
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python -m eval_bench.ci_gate --threshold 0.02 --baseline runs/baseline.json

@@ -1,0 +1,23 @@
+[
+  {
+    "example_id": "ex001",
+    "input": "What is the capital of France?",
+    "prediction": "France?",
+    "gold": "Paris",
+    "score": 0.0
+  },
+  {
+    "example_id": "ex002",
+    "input": "2 + 2 = ?",
+    "prediction": "?",
+    "gold": "4",
+    "score": 0.0
+  },
+  {
+    "example_id": "ex003",
+    "input": "Name the largest planet in the solar system.",
+    "prediction": "system.",
+    "gold": "Jupiter",
+    "score": 0.0
+  }
+]
