@@ -2,24 +2,11 @@
 {"id": "ex002", "input": "2 + 2 = ?", "gold": "4", "tags": ["math"], "difficulty": "easy"}
 {"id": "ex003", "input": "Name the largest planet in the solar system.", "gold": "Jupiter", "tags": ["factual"], "difficulty": "easy"}
 {"id": "ex004", "input": "Who wrote 'Pride and Prejudice'?", "gold": "Jane Austen", "tags": ["literature"], "difficulty": "easy"}
-{"id": "ex005", "input": "What is the chemical symbol for gold?", "gold": "Au", "tags": ["science"], "difficulty": "easy"}
 {"id": "ex006", "input": "What is the square root of 144?", "gold": "12", "tags": ["math"], "difficulty": "medium"}
 {"id": "ex007", "input": "In what year did World War II end?", "gold": "1945", "tags": ["history"], "difficulty": "easy"}
-{"id": "ex008", "input": "What is the smallest prime number?", "gold": "2", "tags": ["math"], "difficulty": "medium"}
-{"id": "ex009", "input": "Who painted the Mona Lisa?", "gold": "Leonardo da Vinci", "tags": ["art"], "difficulty": "easy"}
-{"id": "ex010", "input": "What is the capital of Japan?", "gold": "Tokyo", "tags": ["factual"], "difficulty": "easy"}
 {"id": "ex011", "input": "What gas do plants absorb from the atmosphere for photosynthesis?", "gold": "Carbon dioxide", "tags": ["science"], "difficulty": "medium"}
-{"id": "ex012", "input": "How many continents are there on Earth?", "gold": "7", "tags": ["geography"], "difficulty": "easy"}
 {"id": "ex013", "input": "Who wrote 'Romeo and Juliet'?", "gold": "William Shakespeare", "tags": ["literature"], "difficulty": "easy"}
-{"id": "ex014", "input": "What is the freezing point of water in Celsius?", "gold": "0", "tags": ["science"], "difficulty": "easy"}
 {"id": "ex015", "input": "What is the longest river in the world?", "gold": "Nile", "tags": ["geography"], "difficulty": "medium"}
-{"id": "ex016", "input": "What is 15 multiplied by 4?", "gold": "60", "tags": ["math"], "difficulty": "easy"}
 {"id": "ex017", "input": "Who developed the theory of relativity?", "gold": "Albert Einstein", "tags": ["science"], "difficulty": "easy"}
-{"id": "ex018", "input": "What is the capital of Italy?", "gold": "Rome", "tags": ["factual"], "difficulty": "easy"}
-{"id": "ex019", "input": "How many sides does a hexagon have?", "gold": "6", "tags": ["math"], "difficulty": "easy"}
-{"id": "ex020", "input": "What is the largest ocean on Earth?", "gold": "Pacific Ocean", "tags": ["geography"], "difficulty": "easy"}
-{"id": "ex021", "input": "Who was the first President of the United States?", "gold": "George Washington", "tags": ["history"], "difficulty": "easy"}
 {"id": "ex022", "input": "What is the capital of Australia?", "gold": "Canberra", "tags": ["factual"], "difficulty": "hard"}
 {"id": "ex023", "input": "What is the powerhouse of the cell?", "gold": "Mitochondria", "tags": ["science"], "difficulty": "medium"}
-{"id": "ex024", "input": "What is 100 divided by 4?", "gold": "25", "tags": ["math"], "difficulty": "easy"}
-{"id": "ex025", "input": "Who wrote '1984'?", "gold": "George Orwell", "tags": ["literature"], "difficulty": "medium"}
