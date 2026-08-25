@@ -22,4 +22,4 @@ jobs:
       - name: Run CI gate (smoke suite)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python -m eval_bench.ci_gate --baseline runs/baseline.json --suite smoke --threshold 0.02
+        run: python -m eval_bench.ci_gate --baseline runs/baseline.json --current runs/baseline.json --suite smoke --threshold 0.02
