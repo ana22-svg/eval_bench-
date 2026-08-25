@@ -13,6 +13,7 @@ class ExampleResult:
 
 
 import os
+import time
 from google import genai
 
 _client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
@@ -29,10 +30,12 @@ def call_model(prompt: str) -> str:
 
 def run_suite(examples: list[Example]) -> list[ExampleResult]:
     results = []
-    for ex in examples:
+    for i, ex in enumerate(examples):
         prediction = call_model(ex.input)
         score = exact_match(prediction, ex.gold) if ex.gold else 0.0
         results.append(ExampleResult(ex.id, ex.input, prediction, ex.gold, score))
+        if i < len(examples) - 1:
+            time.sleep(13)
     return results
 
 
@@ -43,6 +46,7 @@ def summarize(results: list[ExampleResult]) -> float:
 
 
 if __name__ == "__main__":
+    import json
     from .dataset import load_dataset, dataset_version
 
     examples = load_dataset("data/sample_set.jsonl")
@@ -51,3 +55,17 @@ if __name__ == "__main__":
     for r in results:
         print(f"{r.example_id}: pred={r.prediction!r} gold={r.gold!r} score={r.score}")
     print(f"\nOverall score: {summarize(results):.2%}")
+
+    output = [
+        {
+            "example_id": r.example_id,
+            "input": r.input,
+            "prediction": r.prediction,
+            "gold": r.gold,
+            "score": r.score,
+        }
+        for r in results
+    ]
+    with open("runs/baseline.json", "w") as f:
+        json.dump(output, f, indent=2)
+    print(f"\nSaved {len(output)} results to runs/baseline.json")

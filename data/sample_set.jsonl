@@ -10,3 +10,11 @@
 {"id": "ex017", "input": "Who developed the theory of relativity?", "gold": "Albert Einstein", "tags": ["science"], "difficulty": "easy"}
 {"id": "ex022", "input": "What is the capital of Australia?", "gold": "Canberra", "tags": ["factual"], "difficulty": "hard"}
 {"id": "ex023", "input": "What is the powerhouse of the cell?", "gold": "Mitochondria", "tags": ["science"], "difficulty": "medium"}
+{"id": "ex101", "input": "What are the three branches of the US federal government?", "gold": "Executive, legislative, and judicial", "tags": ["civics", "multi-part"], "difficulty": "hard"}
+{"id": "ex102", "input": "Explain why the sky appears blue in one sentence.", "gold": "Rayleigh scattering causes shorter blue wavelengths of sunlight to scatter more than other colors in Earth's atmosphere", "tags": ["science", "reasoning"], "difficulty": "hard"}
+{"id": "ex103", "input": "Who is credited with inventing the telephone?", "gold": "Alexander Graham Bell", "tags": ["history", "contested"], "difficulty": "hard"}
+{"id": "ex104", "input": "What year did the Berlin Wall fall?", "gold": "1989", "tags": ["history"], "difficulty": "medium"}
+{"id": "ex105", "input": "Name two causes of World War I.", "gold": "Assassination of Archduke Franz Ferdinand and a system of alliances among European powers", "tags": ["history", "multi-part"], "difficulty": "hard"}
+{"id": "ex106", "input": "What is the difference between weather and climate?", "gold": "Weather is short-term atmospheric conditions, while climate is the long-term average of weather patterns over decades", "tags": ["science", "reasoning"], "difficulty": "hard"}
+{"id": "ex107", "input": "What does GDP stand for and what does it measure?", "gold": "Gross Domestic Product; it measures the total value of goods and services produced in a country", "tags": ["economics", "multi-part"], "difficulty": "hard"}
+{"id": "ex108", "input": "Who painted the Mona Lisa?", "gold": "Leonardo da Vinci", "tags": ["art"], "difficulty": "easy"}

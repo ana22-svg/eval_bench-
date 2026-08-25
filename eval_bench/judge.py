@@ -1,8 +1,9 @@
 import json
 import os
 from dataclasses import dataclass
+from openai import OpenAI
 
-JUDGE_MODEL = "claude-sonnet-5"  # pin this — never "latest"
+JUDGE_MODEL = "openai/gpt-oss-120b"  # pin this — never "latest"
 
 RUBRIC = """You are grading a model's answer against a reference answer.
 Score from 1-5 using this rubric:
@@ -15,6 +16,11 @@ Score from 1-5 using this rubric:
 Respond ONLY with JSON: {"score": <int 1-5>, "reasoning": "<one sentence>"}
 """
 
+_client = OpenAI(
+    api_key=os.environ["GROQ_API_KEY"],
+    base_url="https://api.groq.com/openai/v1",
+)
+
 
 @dataclass
 class JudgeResult:
@@ -24,33 +30,26 @@ class JudgeResult:
 
 
 def call_judge(question: str, prediction: str, gold: str) -> JudgeResult:
-    """Calls the judge model. Fill in the actual API call for your SDK."""
-    import anthropic  # pip install anthropic --break-system-packages
-
-    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
-    msg = client.messages.create(
-        model=JUDGE_MODEL,
-        max_tokens=200,
-        system=RUBRIC,
-        messages=[{
-            "role": "user",
-            "content": f"Question: {question}\nReference answer: {gold}\nModel answer: {prediction}"
-        }],
-    )
-    raw = msg.content[0].text.strip()
-    parsed = json.loads(raw)
-    return JudgeResult(score=parsed["score"], reasoning=parsed["reasoning"], judge_model=JUDGE_MODEL)
-
-
-import random
-
-def call_judge_debiased(question: str, prediction: str, gold: str) -> JudgeResult:
-    """Randomizes which answer is labeled 'A' vs 'B' to strip position bias,
-    and truncates long answers so length alone can't win points."""
-    a, b = prediction, gold
-    swapped = random.random() < 0.5
-    if swapped:
-        a, b = b, a
-    # pass a/b into your prompt as "Answer A" / "Answer B" instead of
-    # "model answer" / "reference answer", then unswap the verdict after.
-    ...
+    last_err = None
+    for attempt in range(2):
+        resp = _client.chat.completions.create(
+            model=JUDGE_MODEL,
+            max_tokens=400,
+            messages=[
+                {"role": "system", "content": RUBRIC},
+                {"role": "user", "content": f"Question: {question}\nReference answer: {gold}\nModel answer: {prediction}"},
+            ],
+        )
+        raw = resp.choices[0].message.content.strip()
+        if raw.startswith("```"):
+            raw = raw.strip("`")
+            if raw.startswith("json"):
+                raw = raw[4:].strip()
+        try:
+            parsed = json.loads(raw)
+            return JudgeResult(score=parsed["score"], reasoning=parsed["reasoning"], judge_model=JUDGE_MODEL)
+        except json.JSONDecodeError as e:
+            last_err = e
+            print(f"  [judge retry {attempt + 1}] malformed JSON, retrying... ({e})")
+    print(f"  [judge] giving up after retries, defaulting to score=None. Raw: {raw!r}")
+    return JudgeResult(score=None, reasoning=f"JSON parse failed: {last_err}", judge_model=JUDGE_MODEL)
