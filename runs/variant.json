@@ -9,9 +9,9 @@
   {
     "example_id": "ex002",
     "input": "2 + 2 = ?",
-    "prediction": "4",
+    "prediction": "Four",
     "gold": "4",
-    "score": 1.0
+    "score": 0.0
   },
   {
     "example_id": "ex003",
@@ -30,9 +30,9 @@
   {
     "example_id": "ex006",
     "input": "What is the square root of 144?",
-    "prediction": "12",
+    "prediction": "twelve",
     "gold": "12",
-    "score": 1.0
+    "score": 0.0
   },
   {
     "example_id": "ex007",
@@ -44,30 +44,30 @@
   {
     "example_id": "ex011",
     "input": "What gas do plants absorb from the atmosphere for photosynthesis?",
-    "prediction": "carbon dioxide",
+    "prediction": "CARBON DIOXIDE",
     "gold": "Carbon dioxide",
     "score": 1.0
   },
   {
     "example_id": "ex013",
     "input": "Who wrote 'Romeo and Juliet'?",
-    "prediction": "Shakespeare",
+    "prediction": "William Shakespeare",
     "gold": "William Shakespeare",
-    "score": 0.0
+    "score": 1.0
   },
   {
     "example_id": "ex015",
     "input": "What is the longest river in the world?",
-    "prediction": "Nile",
+    "prediction": "Nile River",
     "gold": "Nile",
-    "score": 1.0
+    "score": 0.0
   },
   {
     "example_id": "ex017",
     "input": "Who developed the theory of relativity?",
-    "prediction": "Einstein",
+    "prediction": "Albert Einstein",
     "gold": "Albert Einstein",
-    "score": 0.0
+    "score": 1.0
   },
   {
     "example_id": "ex022",
@@ -86,14 +86,14 @@
   {
     "example_id": "ex101",
     "input": "What are the three branches of the US federal government?",
-    "prediction": "Legislative Executive Judicial",
+    "prediction": "Legislative Branch Executive Branch Judicial Branch",
     "gold": "Executive, legislative, and judicial",
     "score": 0.0
   },
   {
     "example_id": "ex102",
     "input": "Explain why the sky appears blue in one sentence.",
-    "prediction": "Air scatters blue light",
+    "prediction": "The sky appears blue because Earths atmosphere scatters shorter blue wavelengths of sunlight in all directions more than other colors",
     "gold": "Rayleigh scattering causes shorter blue wavelengths of sunlight to scatter more than other colors in Earth's atmosphere",
     "score": 0.0
   },
@@ -114,21 +114,21 @@
   {
     "example_id": "ex105",
     "input": "Name two causes of World War I.",
-    "prediction": "Militarism alliances",
+    "prediction": "Militarism and Imperialism",
     "gold": "Assassination of Archduke Franz Ferdinand and a system of alliances among European powers",
     "score": 0.0
   },
   {
     "example_id": "ex106",
     "input": "What is the difference between weather and climate?",
-    "prediction": "Timeframe",
+    "prediction": "Weather refers to short term atmospheric conditions while climate refers to long term average weather patterns",
     "gold": "Weather is short-term atmospheric conditions, while climate is the long-term average of weather patterns over decades",
     "score": 0.0
   },
   {
     "example_id": "ex107",
     "input": "What does GDP stand for and what does it measure?",
-    "prediction": "Gross Domestic Product economic output",
+    "prediction": "Gross Domestic Product measures the total monetary value of all final goods and services produced within a country",
     "gold": "Gross Domestic Product; it measures the total value of goods and services produced in a country",
     "score": 0.0
   },

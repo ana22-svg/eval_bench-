@@ -10,8 +10,6 @@ class ExampleResult:
     prediction: str
     gold: str | None
     score: float
-    input_tokens: int = 0
-    output_tokens: int = 0
 
 
 import os
@@ -28,24 +26,21 @@ def _get_client():
     return _client
 
 
-def call_model(prompt: str) -> tuple[str, int, int]:
-    """Calls Gemini 3.6 Flash (free tier). Returns (text, input_tokens, output_tokens)."""
+def call_model(prompt: str) -> str:
+    """Calls Gemini 3.6 Flash (free tier)."""
     response = _get_client().models.generate_content(
         model="gemini-3.6-flash",
-        contents=f"Answer in as few words as possible, no punctuation, no explanation. Question: {prompt}",
+        contents=f"Answer with the full, complete name or phrase, no punctuation, no explanation. Question: {prompt}",
     )
-    usage = response.usage_metadata
-    in_tok = getattr(usage, "prompt_token_count", 0) or 0
-    out_tok = getattr(usage, "candidates_token_count", 0) or 0
-    return response.text.strip(), in_tok, out_tok
+    return response.text.strip()
 
 
 def run_suite(examples: list[Example]) -> list[ExampleResult]:
     results = []
     for i, ex in enumerate(examples):
-        prediction, in_tok, out_tok = call_model(ex.input)
+        prediction = call_model(ex.input)
         score = exact_match(prediction, ex.gold) if ex.gold else 0.0
-        results.append(ExampleResult(ex.id, ex.input, prediction, ex.gold, score, in_tok, out_tok))
+        results.append(ExampleResult(ex.id, ex.input, prediction, ex.gold, score))
         if i < len(examples) - 1:
             time.sleep(13)
     return results
@@ -78,6 +73,6 @@ if __name__ == "__main__":
         }
         for r in results
     ]
-    with open("runs/baseline.json", "w") as f:
+    with open("runs/variant.json", "w") as f:
         json.dump(output, f, indent=2)
-    print(f"\nSaved {len(output)} results to runs/baseline.json")
+    print(f"\nSaved {len(output)} results to runs/variant.json")
