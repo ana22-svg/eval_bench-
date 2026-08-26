@@ -75,6 +75,8 @@ if __name__ == "__main__":
             "prediction": r.prediction,
             "gold": r.gold,
             "score": r.score,
+            "input_tokens": r.input_tokens,
+            "output_tokens": r.output_tokens,
         }
         for r in results
     ]
