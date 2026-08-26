@@ -1,3 +1,4 @@
 anthropic
 scikit-learn
 numpy
+google-genai==2.19.0

@@ -1,0 +1,81 @@
+{
+  "baseline_ci": {
+    "mean": 0.65,
+    "ci_low": 0.45,
+    "ci_high": 0.85,
+    "n": 20
+  },
+  "variant_ci": {
+    "mean": 0.6,
+    "ci_low": 0.4,
+    "ci_high": 0.8,
+    "n": 20
+  },
+  "paired_significance_test": {
+    "mean_delta": -0.05,
+    "ci_low": -0.25,
+    "ci_high": 0.15,
+    "significant": false,
+    "alpha": 0.05
+  },
+  "diff": {
+    "common_count": 20,
+    "only_in_baseline": [],
+    "only_in_variant": [],
+    "regressions": [
+      {
+        "id": "ex002",
+        "input": "2 + 2 = ?",
+        "gold": "4",
+        "baseline_score": 1.0,
+        "variant_score": 0.0,
+        "delta": -1.0,
+        "baseline_prediction": "4",
+        "variant_prediction": "Four"
+      },
+      {
+        "id": "ex006",
+        "input": "What is the square root of 144?",
+        "gold": "12",
+        "baseline_score": 1.0,
+        "variant_score": 0.0,
+        "delta": -1.0,
+        "baseline_prediction": "12",
+        "variant_prediction": "twelve"
+      },
+      {
+        "id": "ex015",
+        "input": "What is the longest river in the world?",
+        "gold": "Nile",
+        "baseline_score": 1.0,
+        "variant_score": 0.0,
+        "delta": -1.0,
+        "baseline_prediction": "Nile",
+        "variant_prediction": "Nile River"
+      }
+    ],
+    "improvements": [
+      {
+        "id": "ex013",
+        "input": "Who wrote 'Romeo and Juliet'?",
+        "gold": "William Shakespeare",
+        "baseline_score": 0.0,
+        "variant_score": 1.0,
+        "delta": 1.0,
+        "baseline_prediction": "Shakespeare",
+        "variant_prediction": "William Shakespeare"
+      },
+      {
+        "id": "ex017",
+        "input": "Who developed the theory of relativity?",
+        "gold": "Albert Einstein",
+        "baseline_score": 0.0,
+        "variant_score": 1.0,
+        "delta": 1.0,
+        "baseline_prediction": "Einstein",
+        "variant_prediction": "Albert Einstein"
+      }
+    ],
+    "unchanged_count": 15
+  }
+}

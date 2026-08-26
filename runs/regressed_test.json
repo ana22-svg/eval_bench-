@@ -4,7 +4,7 @@
     "input": "What is the capital of France?",
     "prediction": "Paris",
     "gold": "Paris",
-    "score": 1.0
+    "score": 0.0
   },
   {
     "example_id": "ex002",
@@ -51,9 +51,9 @@
   {
     "example_id": "ex013",
     "input": "Who wrote 'Romeo and Juliet'?",
-    "prediction": "Shakespeare",
+    "prediction": "William Shakespeare",
     "gold": "William Shakespeare",
-    "score": 0.0
+    "score": 1.0
   },
   {
     "example_id": "ex015",
@@ -65,9 +65,9 @@
   {
     "example_id": "ex017",
     "input": "Who developed the theory of relativity?",
-    "prediction": "Einstein",
+    "prediction": "Albert Einstein",
     "gold": "Albert Einstein",
-    "score": 0.0
+    "score": 1.0
   },
   {
     "example_id": "ex022",
@@ -93,7 +93,7 @@
   {
     "example_id": "ex102",
     "input": "Explain why the sky appears blue in one sentence.",
-    "prediction": "Air scatters blue light",
+    "prediction": "Atmosphere scatters blue light",
     "gold": "Rayleigh scattering causes shorter blue wavelengths of sunlight to scatter more than other colors in Earth's atmosphere",
     "score": 0.0
   },
@@ -114,7 +114,7 @@
   {
     "example_id": "ex105",
     "input": "Name two causes of World War I.",
-    "prediction": "Militarism alliances",
+    "prediction": "militarism alliances",
     "gold": "Assassination of Archduke Franz Ferdinand and a system of alliances among European powers",
     "score": 0.0
   },
@@ -128,7 +128,7 @@
   {
     "example_id": "ex107",
     "input": "What does GDP stand for and what does it measure?",
-    "prediction": "Gross Domestic Product economic output",
+    "prediction": "Gross domestic product economic output",
     "gold": "Gross Domestic Product; it measures the total value of goods and services produced in a country",
     "score": 0.0
   },
