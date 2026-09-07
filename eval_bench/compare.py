@@ -1,36 +1,55 @@
 import json
-import numpy as np
+import random
+import statistics
 from dataclasses import asdict
 from eval_bench.runner import ExampleResult
 
 
 def bootstrap_ci(scores: list[float], n_boot: int = 2000, alpha: float = 0.05) -> tuple[float, float, float]:
     """Returns (mean, lower_bound, upper_bound) via bootstrap resampling."""
-    scores = np.array(scores)
-    boot_means = [np.random.choice(scores, size=len(scores), replace=True).mean() for _ in range(n_boot)]
-    lower = np.percentile(boot_means, 100 * alpha / 2)
-    upper = np.percentile(boot_means, 100 * (1 - alpha / 2))
-    return scores.mean(), lower, upper
+    if len(scores) == 0:
+        return 0.0, 0.0, 0.0
+    boot_means = []
+    for _ in range(n_boot):
+        sample = [random.choice(scores) for _ in scores]
+        boot_means.append(statistics.fmean(sample))
+    boot_means.sort()
+    lower_index = round((alpha / 2) * (n_boot - 1))
+    upper_index = round((1 - alpha / 2) * (n_boot - 1))
+    return statistics.fmean(scores), boot_means[lower_index], boot_means[upper_index]
 
 
 def paired_significance(scores_a: list[float], scores_b: list[float]) -> float:
     """Paired bootstrap test for whether run B differs from run A.
     Returns p-value-ish stat: fraction of resamples where B doesn't beat A."""
-    diffs = np.array(scores_b) - np.array(scores_a)
+    diffs = [b - a for a, b in zip(scores_a, scores_b)]
+    if not diffs:
+        return 1.0
     n_boot = 5000
-    boot_diffs = [np.random.choice(diffs, size=len(diffs), replace=True).mean() for _ in range(n_boot)]
-    boot_diffs = np.array(boot_diffs)
-    return float((boot_diffs <= 0).mean())  # smaller = more confident B > A
+    not_better = 0
+    for _ in range(n_boot):
+        sample_mean = statistics.fmean(random.choice(diffs) for _ in diffs)
+        if sample_mean <= 0:
+            not_better += 1
+    return not_better / n_boot  # smaller = more confident B > A
 
 
 def save_run(results: list[ExampleResult], path: str):
+    from pathlib import Path
+
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w") as f:
         json.dump([asdict(r) for r in results], f, indent=2)
 
 
 def load_run(path: str) -> list[ExampleResult]:
     with open(path) as f:
-        return [ExampleResult(**r) for r in json.load(f)]
+        return [ExampleResult(**_compatible_row(r)) for r in json.load(f)]
+
+
+def _compatible_row(row: dict) -> dict:
+    fields = ExampleResult.__dataclass_fields__
+    return {name: row.get(name, field.default) for name, field in fields.items()}
 
 
 def diff_runs(run_a: list[ExampleResult], run_b: list[ExampleResult]):
@@ -65,3 +84,17 @@ def diff_runs(run_a: list[ExampleResult], run_b: list[ExampleResult]):
         print(f"  {eid}: {ra.score} -> {rb.score}")
 
     return regressions, improvements
+
+
+def main() -> None:
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("baseline")
+    parser.add_argument("current")
+    args = parser.parse_args()
+    diff_runs(load_run(args.baseline), load_run(args.current))
+
+
+if __name__ == "__main__":
+    main()

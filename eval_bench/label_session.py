@@ -1,8 +1,9 @@
 """
-Interactive labeling session: reads model predictions from a saved run
-(runs/baseline.json), gets a judge score from Groq, then asks you for a
-human 1-5 score. Appends to human_labels.jsonl and judge_labels.jsonl so
-you can stop and resume anytime — it skips examples already labeled.
+Interactive labeling session for judge calibration.
+
+It reads model predictions from a saved run, gets a judge score when
+GROQ_API_KEY is configured, then asks for a human 1-5 score. It appends to
+human_labels.jsonl and judge_labels.jsonl so you can stop and resume anytime.
 """
 import json
 import os
@@ -66,7 +67,8 @@ def main():
                 break
             if raw in {"1", "2", "3", "4", "5"}:
                 append_label(HUMAN_LABELS_PATH, ex.id, int(raw))
-                append_label(JUDGE_LABELS_PATH, ex.id, judge_result.score)
+                if judge_result.score is not None:
+                    append_label(JUDGE_LABELS_PATH, ex.id, judge_result.score)
                 break
             print("Enter 1-5, 's' to skip, or 'q' to quit.")
 

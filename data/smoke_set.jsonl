@@ -1,0 +1,5 @@
+{"id": "ex001", "input": "What is the capital of France?", "gold": "Paris", "tags": ["factual"], "difficulty": "easy"}
+{"id": "ex002", "input": "2 + 2 = ?", "gold": "4", "tags": ["math"], "difficulty": "easy"}
+{"id": "ex003", "input": "Name the largest planet in the solar system.", "gold": "Jupiter", "tags": ["factual"], "difficulty": "easy"}
+{"id": "ex004", "input": "Who wrote 'Pride and Prejudice'?", "gold": "Jane Austen", "tags": ["literature"], "difficulty": "easy"}
+{"id": "ex006", "input": "What is the square root of 144?", "gold": "12", "tags": ["math"], "difficulty": "medium"}

@@ -1,7 +1,7 @@
 import json
 import os
 from dataclasses import dataclass
-from openai import OpenAI
+from typing import Optional
 
 JUDGE_MODEL = "openai/gpt-oss-120b"  # pin this — never "latest"
 
@@ -16,23 +16,28 @@ Score from 1-5 using this rubric:
 Respond ONLY with JSON: {"score": <int 1-5>, "reasoning": "<one sentence>"}
 """
 
-_client = OpenAI(
-    api_key=os.environ["GROQ_API_KEY"],
-    base_url="https://api.groq.com/openai/v1",
-)
-
-
 @dataclass
 class JudgeResult:
-    score: int
+    score: Optional[int]
     reasoning: str
     judge_model: str
+
+
+def _client():
+    if "GROQ_API_KEY" not in os.environ:
+        raise RuntimeError("GROQ_API_KEY is required for judge scoring")
+    from openai import OpenAI
+
+    return OpenAI(
+        api_key=os.environ["GROQ_API_KEY"],
+        base_url="https://api.groq.com/openai/v1",
+    )
 
 
 def call_judge(question: str, prediction: str, gold: str) -> JudgeResult:
     last_err = None
     for attempt in range(2):
-        resp = _client.chat.completions.create(
+        resp = _client().chat.completions.create(
             model=JUDGE_MODEL,
             max_tokens=400,
             messages=[
@@ -47,7 +52,7 @@ def call_judge(question: str, prediction: str, gold: str) -> JudgeResult:
                 raw = raw[4:].strip()
         try:
             parsed = json.loads(raw)
-            return JudgeResult(score=parsed["score"], reasoning=parsed["reasoning"], judge_model=JUDGE_MODEL)
+            return JudgeResult(score=int(parsed["score"]), reasoning=parsed["reasoning"], judge_model=JUDGE_MODEL)
         except json.JSONDecodeError as e:
             last_err = e
             print(f"  [judge retry {attempt + 1}] malformed JSON, retrying... ({e})")
